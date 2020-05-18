@@ -1,0 +1,56 @@
+﻿@inject IJSRuntime js
+
+<div style="display: flex; flex-wrap: wrap; align-items: center;">
+
+ <ListadoGenerico Listado="Peliculas">
+        <HayRegistros Context="pelicula">
+
+            <PeliculaIndividual Pelicula="pelicula" EliminarPelicula="EliminarPelicula" />
+
+        </HayRegistros>
+  </ListadoGenerico>
+
+</div>
+   
+@code {
+
+
+
+    /// <summary>
+    /// ahora vamos a declarar el listado de peliculas como parametro
+    /// para eso requerimos declarar la variable Peliculas como public
+    /// y agregarle la palabra parameter al principio y ademas deber tener las propiedas
+    /// get y set para que funciones como parametro
+    /// </summary>
+    /// <returns></returns>
+    ///
+
+    [Parameter] public List<Pelicula> Peliculas { get; set; }
+   
+
+
+    async Task EliminarPelicula(Pelicula pelicula)
+    {
+        var confirmar = await js.Confirm($"Desea eliminar la pelicula {pelicula.Titulo}?");
+        if (confirmar)
+        {
+            Peliculas.Remove(pelicula);
+        }
+    }
+
+
+    //estes es un ciclo de vida de un coompenente
+    //este se carga al inicar la carga de la pagina  donde este localidado
+    /// <summary>
+    /// este ciclo de vida por el momento s¿lo vamos a deshabilitar
+    /// ya que no lo vamos a ocupar
+    /// </summary>
+    /// <returns></returns>
+    @*protected override async Task OnInitializedAsync()
+        {
+            await Task.Delay(5000);
+            //Peliculas = ObtenerPeliculas();
+            //Peliculas = new List<Pelicula>();
+        }*@
+
+   }

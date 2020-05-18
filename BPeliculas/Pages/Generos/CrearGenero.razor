@@ -1,0 +1,20 @@
+﻿@page "/generos/crear"
+
+@inject IJSRuntime js
+
+<h3>Crear Genero</h3>
+
+<FormularioGenero OnValidSubmit="Crear" Genero="Genero" />
+
+
+@code {
+
+    private Genero Genero = new Genero();
+
+    private async Task  Crear()
+    {
+        await js.Confirm("Ejecutando Metodo Crear Genero");
+        await js.Confirm($"NUevo  Genero :  {Genero.Nombre}");
+    }
+
+}

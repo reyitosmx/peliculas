@@ -1,0 +1,38 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<ListadoPeliculas />
+
+
+@*<ListadoPeliculas/>*@
+
+
+@code {
+
+
+    private int currentCount = 0;
+
+    private List<Pelicula> ObtenerPeliculas()
+    {
+        return new List<Pelicula>()
+        {
+                        new Pelicula() { Titulo = "Counter -Spider-man : far from home ", Lanzamiento = new DateTime(1966, 07, 19) },
+                        new Pelicula() { Titulo = "Counter- Mi Villano Favorito", Lanzamiento = new DateTime(1975, 12, 25) },
+                        new Pelicula() { Titulo = "Counter- Harry Potter", Lanzamiento = new DateTime(2001, 03, 02) }
+
+                    };
+
+
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        //Console.WriteLine("Me han clcikeado desde metodo");
+    }
+}

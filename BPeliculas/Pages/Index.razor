@@ -1,0 +1,23 @@
+﻿@page "/"
+@inject IRepositorio  repositorio
+
+<div>
+    <h3>Peliculas</h3>
+    <ListadoPeliculas Peliculas="Peliculas" />
+     
+       
+</div>
+
+
+@code {
+
+    public List<Pelicula> Peliculas;
+
+
+    //protected override async Task OnInitializedAsync()
+    protected override void  OnInitialized()
+    {
+       Peliculas = repositorio.ObtenerPeliculas();
+       
+    }
+}
